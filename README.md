@@ -56,5 +56,8 @@ Principais rotas:
 Veja exemplos de requisição e resposta, modelos e mais detalhes na seção de documentação da API acima.
 
 ---
+Espero que tenha gostado do projeto! Qualquer coisa, é só chamar.
 
-Se tiver dúvidas, consulte o Swagger ou o código fonte. Bom uso!
+Email: vpbohn@gmail.com
+
+LinkedIn: https://www.linkedin.com/in/vitorpbohn/
