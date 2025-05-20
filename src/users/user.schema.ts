@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Schema as MongooseSchema } from 'mongoose'; // Import Schema as MongooseSchema to avoid name conflict
+import { Document, Schema as MongooseSchema } from 'mongoose';
 
 @Schema({
   timestamps: true,

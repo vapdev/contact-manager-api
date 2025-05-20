@@ -12,7 +12,6 @@ export class ContactsService {
   }
 
   async findAll(userId: string, search?: string): Promise<Contact[]> {
-    console.log('userId', userId);
     const filter: any = { userId: userId };
     if (search) {
       filter.$or = [
@@ -20,8 +19,7 @@ export class ContactsService {
         { email: { $regex: search, $options: 'i' } },
         { phone: { $regex: search, $options: 'i' } },
       ];
-    }console.log("SEGUIR:")
-    console.log(this.contactModel.find(filter).exec());
+    }
     return this.contactModel.find(filter).exec();
   }
 
@@ -36,7 +34,6 @@ export class ContactsService {
   }
 
   async findById(id: string): Promise<Contact> {
-    console.log("ID:", id);
     const contact = await this.contactModel.findOne({ _id: id });
     if (!contact) throw new NotFoundException('Contato não encontrado');
     return contact;
