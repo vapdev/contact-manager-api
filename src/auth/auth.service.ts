@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   async login(email: string, password: string): Promise<string | null> {
-    const user = await this.usersService.asyncFindByEmailBringPassword(email);
+    const user = await this.usersService.findByEmail(email);
 
     if (user) {
       const isPasswordValid = await bcrypt.compare(password, user.password);

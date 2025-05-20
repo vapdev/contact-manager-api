@@ -5,7 +5,7 @@ import { Model, Types } from 'mongoose';
 
 @Injectable()
 export class ContactsService {
-  constructor(@InjectModel(Contact.name) private contactModel: Model<Contact>) {}
+  constructor(@InjectModel(Contact.name) private contactModel: Model<Contact>) { }
 
   async create(userId: string, dto: any): Promise<Contact> {
     return this.contactModel.create({ ...dto, userId });
