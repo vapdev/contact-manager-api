@@ -12,14 +12,16 @@ export class ContactsService {
   }
 
   async findAll(userId: string, search?: string): Promise<Contact[]> {
-    const filter: any = { userId: new Types.ObjectId(userId) };
+    console.log('userId', userId);
+    const filter: any = { userId: userId };
     if (search) {
       filter.$or = [
         { name: { $regex: search, $options: 'i' } },
         { email: { $regex: search, $options: 'i' } },
         { phone: { $regex: search, $options: 'i' } },
       ];
-    }
+    }console.log("SEGUIR:")
+    console.log(this.contactModel.find(filter).exec());
     return this.contactModel.find(filter).exec();
   }
 
@@ -29,6 +31,13 @@ export class ContactsService {
       dto,
       { new: true },
     );
+    if (!contact) throw new NotFoundException('Contato não encontrado');
+    return contact;
+  }
+
+  async findById(id: string): Promise<Contact> {
+    console.log("ID:", id);
+    const contact = await this.contactModel.findOne({ _id: id });
     if (!contact) throw new NotFoundException('Contato não encontrado');
     return contact;
   }

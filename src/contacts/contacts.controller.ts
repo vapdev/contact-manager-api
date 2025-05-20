@@ -31,6 +31,15 @@ export class ContactsController {
     return this.contactsService.findAll(userId, search);
   }
 
+  @ApiOperation({ summary: 'Busca um contato pelo ID' })
+  @ApiParam({ name: 'id', description: 'ID do contato' })
+  @ApiResponse({ status: 200, description: 'Contato encontrado' })
+  @ApiResponse({ status: 404, description: 'Contato não encontrado' })
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    return this.contactsService.findById(id);
+  }
+
   @ApiOperation({ summary: 'Atualiza um contato existente' })
   @ApiParam({ name: 'id', description: 'ID do contato a ser atualizado' })
   @ApiResponse({ status: 200, description: 'Contato atualizado com sucesso' })
