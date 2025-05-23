@@ -19,6 +19,18 @@ API RESTful para gerenciamento de usuários e contatos, construída com NestJS, 
    ```
    O servidor estará disponível em http://localhost:3001
 
+## Como rodar o seeder (popular banco com dados de exemplo)
+
+1. Execute o comando:
+   ```bash
+   npx ts-node src/scripts/seeder.ts
+   ```
+   Isso irá criar um usuário:
+   - **Email:** seeder@exemplo.com
+   - **Senha:** senha123
+
+   E três contatos de exemplo para esse usuário.
+
 ## Como rodar os testes
 
 - **Testes unitários:**
@@ -56,6 +68,7 @@ Principais rotas:
 Veja exemplos de requisição e resposta, modelos e mais detalhes na seção de documentação da API acima.
 
 ---
+
 Espero que tenha gostado do projeto! Qualquer coisa, é só chamar.
 
 Email: vpbohn@gmail.com

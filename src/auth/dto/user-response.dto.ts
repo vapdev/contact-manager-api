@@ -14,6 +14,9 @@ export class UserResponseDto {
     id: string;
 
     @Expose()
+    userId:string;
+     
+    @Expose()
     email: string;
 
     @Expose()
