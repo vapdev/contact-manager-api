@@ -1,19 +1,14 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../src/app.module';
+import { setupTestApp } from './app.e2e-setup';
 
 describe('Users (e2e)', () => {
   let app: INestApplication;
   let jwtToken: string;
 
   beforeAll(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-    app = moduleFixture.createNestApplication();
-    app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
-    await app.init();
+    const { app: testApp } = await setupTestApp();
+    app = testApp;
 
     // Cria usuário e faz login para obter token
     await request(app.getHttpServer())

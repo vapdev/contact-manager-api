@@ -1,7 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ContactsService } from './contacts.service';
-import { getModelToken } from '@nestjs/mongoose';
-import { Contact } from './contact.schema';
+import { ContactRepository } from './interfaces/contact-repository.interface';
 
 const mockContact = {
   _id: 'contact123',
@@ -11,12 +10,12 @@ const mockContact = {
   phone: '123456789',
 };
 
-const contactModelMock = {
+const mockContactRepository = {
   create: jest.fn().mockResolvedValue(mockContact),
-  find: jest.fn().mockReturnValue({ exec: jest.fn().mockResolvedValue([mockContact]) }),
-  findOneAndUpdate: jest.fn().mockResolvedValue(mockContact),
-  findOne: jest.fn().mockResolvedValue(mockContact),
-  findOneAndDelete: jest.fn().mockResolvedValue(mockContact),
+  findAll: jest.fn().mockResolvedValue([mockContact]),
+  update: jest.fn().mockResolvedValue(mockContact),
+  findById: jest.fn().mockResolvedValue(mockContact),
+  delete: jest.fn().mockResolvedValue(undefined),
 };
 
 describe('ContactsService', () => {
@@ -26,7 +25,10 @@ describe('ContactsService', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ContactsService,
-        { provide: getModelToken(Contact.name), useValue: contactModelMock },
+        {
+          provide: 'ContactRepository',
+          useValue: mockContactRepository,
+        },
       ],
     }).compile();
     service = module.get<ContactsService>(ContactsService);
